@@ -1,0 +1,119 @@
+/**
+ * 个人中心页样式 - 现代化设计
+ */
+
+@import '@/styles/globals.css';
+
+.profile {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--color-background) 0%, #f5f6f7 100%);
+}
+
+/* === 用户信息卡片 === */
+.userCard {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: calc(var(--spacing-8) + env(safe-area-inset-top)) var(--spacing-5) var(--spacing-6);
+  background: linear-gradient(135deg, rgba(255, 107, 74, 0.1) 0%, rgba(255, 138, 101, 0.05) 100%);
+  border-bottom: 1px solid var(--color-border-subtle);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 120px;
+    height: 120px;
+    background: radial-gradient(circle, rgba(255, 107, 74, 0.15) 0%, transparent 70%);
+    filter: blur(40px);
+  }
+}
+
+.userInfo {
+  margin-top: var(--spacing-4);
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.userName {
+  display: block;
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--spacing-2);
+  letter-spacing: -0.01em;
+}
+
+.userRole {
+  display: inline-block;
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-primary);
+  padding: var(--spacing-1) var(--spacing-3);
+  background: var(--color-primary-light);
+  border-radius: var(--radius-full);
+  letter-spacing: 0.02em;
+}
+
+/* === 菜单列表 === */
+.menuList {
+  margin: var(--spacing-5) var(--spacing-5) 0;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+}
+
+.menuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-4) var(--spacing-5);
+  border-bottom: 1px solid var(--color-border-subtle);
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  &:hover {
+    background-color: var(--color-surface-subtle);
+  }
+
+  &:active {
+    background-color: var(--color-surface-subtle);
+    transform: scale(0.98);
+  }
+}
+
+.menuText {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.menuArrow {
+  font-size: 20px;
+  color: var(--color-text-muted);
+  line-height: 1;
+  transition: transform var(--duration-fast) var(--ease-out);
+
+  .menuItem:hover & {
+    transform: translateX(4px);
+  }
+
+  .menuItem:active & {
+    transform: translateX(2px);
+  }
+}
+
+/* === 退出登录 === */
+.logout {
+  margin-top: var(--spacing-6);
+  padding: 0 var(--spacing-5);
+}

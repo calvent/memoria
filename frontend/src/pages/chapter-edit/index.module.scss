@@ -1,0 +1,75 @@
+.chapterEdit {
+  min-height: 100vh;
+  padding: var(--spacing-4);
+  background-color: var(--background);
+  display: flex;
+  flex-direction: column;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  font-size: var(--font-size-body);
+}
+
+.formGroup {
+  margin-bottom: var(--spacing-6);
+}
+
+.label {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-semibold);
+  color: var(--text);
+  margin-bottom: var(--spacing-2);
+  display: block;
+}
+
+.labelRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-2);
+}
+
+.titleInput {
+  width: 100%;
+  min-height: 48px;
+  padding: var(--spacing-3);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.contentInput {
+  width: 100%;
+  min-height: 300px;
+  padding: var(--spacing-3);
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-body);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.wordCount {
+  margin-bottom: var(--spacing-4);
+}
+
+.wordCountText {
+  font-size: var(--font-size-small);
+  color: var(--text-muted);
+  text-align: right;
+  display: block;
+}
+
+.actions {
+  display: flex;
+  gap: var(--spacing-3);
+  margin-top: auto;
+}

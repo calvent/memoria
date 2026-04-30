@@ -1,0 +1,218 @@
+/**
+ * Button 组件样式 - 现代化设计
+ *
+ * 使用设计令牌，确保一致性
+ */
+
+@import '@/styles/globals.css';
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-2);
+  font-family: var(--font-family-base);
+  font-weight: var(--font-weight-semibold);
+  border-radius: var(--radius-lg);
+  border: none;
+  cursor: pointer;
+  transition: all var(--duration-fast) var(--ease-out);
+  user-select: none;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none;
+  overflow: hidden;
+
+  /* 现代化的点击效果 */
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity var(--duration-fast) var(--ease-out);
+  }
+
+  &:active:not(.state-disabled)::after {
+    opacity: 1;
+    transform: scale(1.5);
+  }
+
+  &:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px var(--color-primary-subtle);
+  }
+
+  &:active:not(.state-disabled) {
+    transform: scale(0.97);
+  }
+}
+
+/* === 尺寸变体 === */
+.size-sm {
+  min-height: var(--height-button-sm);
+  padding: 0 var(--spacing-4);
+  font-size: var(--font-size-small);
+  border-radius: var(--radius-md);
+}
+
+.size-md {
+  min-height: var(--height-button-md);
+  padding: 0 var(--spacing-5);
+  font-size: var(--font-size-body);
+}
+
+.size-lg {
+  min-height: var(--height-button-lg);
+  padding: 0 var(--spacing-6);
+  font-size: var(--font-size-body);
+}
+
+/* === 变体样式 === */
+
+/* Primary - 主按钮 */
+.variant-primary {
+  background: var(--gradient-primary);
+  color: var(--color-primary-foreground);
+  box-shadow: var(--shadow-sm), 0 2px 4px rgba(255, 107, 74, 0.2);
+
+  &:hover:not(.state-disabled) {
+    box-shadow: var(--shadow-md), 0 4px 8px rgba(255, 107, 74, 0.3);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(.state-disabled) {
+    background: var(--color-primary-active);
+    transform: translateY(0) scale(0.97);
+  }
+}
+
+/* Secondary - 次要按钮 */
+.variant-secondary {
+  background: var(--color-surface);
+  color: var(--color-text);
+  border: 1.5px solid var(--color-border);
+  box-shadow: var(--shadow-xs);
+
+  &:hover:not(.state-disabled) {
+    background: var(--color-surface-subtle);
+    border-color: var(--color-border-strong);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &:active:not(.state-disabled) {
+    background: var(--color-surface-subtle);
+    transform: translateY(0) scale(0.97);
+  }
+}
+
+/* Outline - 轮廓按钮 */
+.variant-outline {
+  background: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+
+  &:hover:not(.state-disabled) {
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    box-shadow: var(--shadow-sm);
+  }
+
+  &:active:not(.state-disabled) {
+    background: var(--color-primary-hover);
+    border-color: var(--color-primary-hover);
+    transform: translateY(0) scale(0.97);
+  }
+}
+
+/* Ghost - 幽灵按钮 */
+.variant-ghost {
+  background: transparent;
+  color: var(--color-text);
+  border: 1.5px solid transparent;
+
+  &:hover:not(.state-disabled) {
+    background: var(--color-surface-subtle);
+  }
+
+  &:active:not(.state-disabled) {
+    background: var(--color-surface-subtle);
+    transform: translateY(0) scale(0.97);
+  }
+}
+
+/* Danger - 危险按钮 */
+.variant-danger {
+  background: linear-gradient(135deg, #ff3b30 0%, #ff5c5c 100%);
+  color: white;
+  box-shadow: var(--shadow-sm), 0 2px 4px rgba(255, 59, 48, 0.2);
+
+  &:hover:not(.state-disabled) {
+    box-shadow: var(--shadow-md), 0 4px 8px rgba(255, 59, 48, 0.3);
+    transform: translateY(-1px);
+  }
+
+  &:active:not(.state-disabled) {
+    opacity: 0.9;
+    transform: translateY(0) scale(0.97);
+  }
+}
+
+/* === 状态样式 === */
+
+/* Disabled - 禁用状态 */
+.state-disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+  box-shadow: none !important;
+  transform: none !important;
+}
+
+/* Loading - 加载状态 */
+.state-loading {
+  cursor: wait;
+  pointer-events: none;
+
+  .content {
+    opacity: 0.6;
+  }
+}
+
+/* === 块级按钮 === */
+.block {
+  display: flex;
+  width: 100%;
+}
+
+/* === 内容元素 === */
+.icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.content {
+  display: inline-block;
+}
+
+/* === 加载动画 === */
+.spinner {
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  border: 2.5px solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin 0.6s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

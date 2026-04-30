@@ -1,0 +1,197 @@
+/**
+ * 录音页样式 - 现代化设计
+ */
+
+@import '@/styles/globals.css';
+
+.recording {
+  min-height: 100vh;
+  background: linear-gradient(180deg, var(--color-background) 0%, #f5f6f7 100%);
+  display: flex;
+  flex-direction: column;
+}
+
+/* === 状态栏 === */
+.statusBar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: calc(var(--spacing-4) + env(safe-area-inset-top)) var(--spacing-5) var(--spacing-4);
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--color-border-subtle);
+}
+
+.statusLeft {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-3);
+}
+
+.statusDot {
+  width: 10px;
+  height: 10px;
+  border-radius: var(--radius-full);
+  background-color: var(--color-text-muted);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: var(--radius-full);
+    background: inherit;
+    opacity: 0.3;
+  }
+
+  &.recording {
+    background: var(--color-danger);
+    animation: pulse-recording 1.5s ease-in-out infinite;
+
+    &::before {
+      animation: pulse-ring 1.5s ease-in-out infinite;
+    }
+  }
+}
+
+@keyframes pulse-recording {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.7;
+  }
+}
+
+@keyframes pulse-ring {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}
+
+.statusText {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.duration {
+  font-size: var(--font-size-h2);
+  font-weight: var(--font-heavy);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+/* === 转写文本区 === */
+.transcriptArea {
+  flex: 1;
+  padding: var(--spacing-5);
+  overflow-y: auto;
+}
+
+.transcriptContent {
+  min-height: 100%;
+  flex-direction: column;
+  gap: var(--spacing-2);
+}
+
+.transcriptText {
+  font-size: var(--font-size-body);
+  line-height: var(--line-height-relaxed);
+  color: var(--color-text);
+
+  &.current {
+    color: var(--color-primary);
+    font-weight: var(--font-weight-medium);
+  }
+}
+
+/* 空状态 */
+.empty {
+  min-height: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-surface);
+  border-radius: var(--radius-xl);
+  border: 2px dashed var(--color-border);
+}
+
+.emptyText {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text-muted);
+}
+
+/* === 错误提示 === */
+.errorBox {
+  margin: 0 var(--spacing-5) var(--spacing-4);
+  padding: var(--spacing-3) var(--spacing-4);
+  background: var(--color-danger-light);
+  border: 1px solid var(--color-danger);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.errorText {
+  font-size: var(--font-size-small);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-danger);
+}
+
+/* === 控制按钮 === */
+.controls {
+  padding: var(--spacing-5);
+  background: var(--color-surface);
+  border-top: 1px solid var(--color-border-subtle);
+  box-shadow: 0 -4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.controlRow {
+  display: flex;
+  gap: var(--spacing-3);
+}
+
+/* === 弹窗 === */
+.modalFooter {
+  display: flex;
+  gap: var(--spacing-2);
+  flex-wrap: wrap;
+}
+
+.modalContent {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-3);
+}
+
+.modalText {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.modalPreview {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: var(--spacing-3);
+  background: var(--color-surface-subtle);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.previewText {
+  font-size: var(--font-size-small);
+  color: var(--color-text-secondary);
+  line-height: var(--line-height-relaxed);
+}

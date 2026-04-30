@@ -1,0 +1,32 @@
+# Web 框架
+fastapi
+uvicorn
+python-multipart
+
+# 数据库
+sqlalchemy[asyncio]
+asyncpg
+alembic
+
+# 数据验证
+pydantic
+pydantic-settings
+
+# 认证
+PyJWT
+passlib[bcrypt]
+
+# 缓存/存储
+redis
+minio
+
+# HTTP 客户端
+httpx
+websockets
+
+# 工具
+python-dotenv
+nanoid
+
+# AI 服务
+dashscope  # 阿里云 Qwen3 ASR/TTS

@@ -1,0 +1,129 @@
+/**
+ * Input 组件样式
+ */
+
+@import '@/styles/globals.css';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-1);
+}
+
+.label {
+  font-size: var(--font-size-body);
+  font-weight: var(--font-weight-medium);
+  color: var(--color-text);
+}
+
+.container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  background-color: var(--color-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition: all var(--duration-base) var(--ease-out);
+
+  &:focus-within {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.1);
+  }
+}
+
+/* === 尺寸变体 === */
+.size-sm {
+  min-height: var(--height-input-sm);
+  padding: 0 var(--spacing-2);
+
+  .input {
+    font-size: var(--font-size-small);
+  }
+}
+
+.size-md {
+  min-height: var(--height-input-md);
+  padding: 0 var(--spacing-3);
+
+  .input {
+    font-size: var(--font-size-body);
+  }
+}
+
+/* === 状态样式 === */
+
+/* Error - 错误状态 */
+.state-error {
+  border-color: var(--color-danger);
+
+  &:focus-within {
+    border-color: var(--color-danger);
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+  }
+}
+
+/* Success - 成功状态 */
+.state-success {
+  border-color: var(--color-success);
+
+  &:focus-within {
+    border-color: var(--color-success);
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.1);
+  }
+}
+
+/* Disabled - 禁用状态 */
+.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background-color: var(--color-surface-subtle);
+}
+
+/* === 输入框样式 === */
+.input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  color: var(--color-text);
+  outline: none;
+  width: 100%;
+
+  &::placeholder {
+    color: var(--color-text-muted);
+  }
+}
+
+.hasPrefix {
+  .input {
+    padding-left: var(--spacing-1);
+  }
+}
+
+.hasSuffix {
+  .input {
+    padding-right: var(--spacing-1);
+  }
+}
+
+/* === 图标样式 === */
+.prefixIcon,
+.suffixIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+/* === 辅助文本 === */
+.errorText {
+  font-size: var(--font-size-small);
+  color: var(--color-danger);
+  margin-top: var(--spacing-0-5);
+}
+
+.helperText {
+  font-size: var(--font-size-small);
+  color: var(--color-text-muted);
+  margin-top: var(--spacing-0-5);
+}
