@@ -1,23 +1,21 @@
-# AI老年回忆录 MVP 总体技术方案
+# Memoria
 
-## 排障：小程序自定义 TabBar
+Memoria 是一款基于 Agent 技术打造的 AI 驱动老年人回忆录 App。它把传统“口述历史”中整理难、耗时长、成稿门槛高的问题，变成一种接近聊天的自然体验: 用户只需要像平时说话一样讲述自己的经历，AI 就能持续理解上下文，将零散回忆整理为逻辑清晰、结构完整、便于沉淀与对外分享的人生故事。
 
-### 主要问题
-- 自定义 TabBar 不显示或切换后消失
-- `dist/app.json` 的 `lazyCodeLoading` 报错
-- 运行时报 `Cannot read property 'mount' of null`
-- SVG 图标在微信小程序端模板缺失（`tmpl_0_path` 等）
+它不只是一个记录工具，更希望成为帮助老年人重新理解自己、重新连接他人、重新发现时代记忆的数字入口。围绕“讲述”“整理”“连接”三个动作，Memoria 将语音交互、长文本理解、实体抽取和关系发现能力组合在一起，让个体记忆转化为可被阅读、可被检索、可被重新连接的内容资产。
 
-### 解决方法
-- 使用本地 PNG 图标（`frontend/src/assets/icons`），避免 SVG；`tabBar.list` 与 `custom-tab-bar` 中图标保持一致
-- `custom-tab-bar` 使用 `View/Image/Text` 渲染，并在 `frontend/src/custom-tab-bar/index.config.ts` 设置 `component: true`、`styleIsolation: 'shared'`
-- `frontend/src/app.config.ts` 不设置 `lazyCodeLoading`，由 Taro/开发者工具默认处理
-- `frontend/config/index.ts` 增加 `mini.addChunkPages`，保证 `custom-tab-bar/index` 先加载 `runtime/taro/vendors/common`
-- H5 侧在 `frontend/src/app.ts` 动态加载自定义 TabBar，避免小程序端重复注册
+## 产品价值
 
-### 图标更新建议
-- 通过改文件名（如 `*-v2.png`）避免微信缓存旧图
-- 更新后清理 `frontend/dist` 并重新 `npm run dev:weapp`
+- 让记录回忆像聊天一样简单。用户不需要写长文、不需要整理提纲，只要开口讲，AI 就能自动完成转写、归纳、结构化和内容整理。
+- 让漫长人生轨迹变得可理解。依托 Agent 对长文本的深度语义分析与人物、时间、地点、组织等实体抽取能力，系统可以从海量讲述中提炼出清晰的人生阶段与历史活动轨迹。
+- 让“同代人连接”更精准。基于相似时代背景、成长经历、工作履历和关键事件，系统可以智能推荐具有共同记忆基础的人，提升发现“同路人”的效率。
+- 让旧关系有机会被重新找回。围绕“时空节点”构建的社会关系重连网络，可以结合特定历史时期的组织机构名称、地理位置与事件线索，帮助用户发现并重新联系曾经的老同事、老同学与旧友。
+
+## 核心体验
+
+- 口述即成文。一次自然讲述，可以逐步沉淀为章节化、可阅读的回忆录内容。
+- 轨迹即推荐。系统不仅记录故事，还能理解故事背后的人生路径，并据此生成更有意义的人物关联推荐。
+- 节点即连接。每一个单位、地点、年份与身份变化，都可能成为重新建立社会连接的入口。
 
 ## 系统架构
 
@@ -73,6 +71,27 @@
 - 缓存/队列：Redis（高性能）
 - 对象存储：MinIO（开源S3兼容，部署简单）
 - AI 服务：阿里云 Qwen3（ASR 语音识别 ✅ | TTS 语音合成 ⏸️待迭代）
+
+## 开发排障记录
+
+### 小程序自定义 TabBar
+
+#### 主要问题
+- 自定义 TabBar 不显示或切换后消失
+- `dist/app.json` 的 `lazyCodeLoading` 报错
+- 运行时报 `Cannot read property 'mount' of null`
+- SVG 图标在微信小程序端模板缺失（`tmpl_0_path` 等）
+
+#### 解决方法
+- 使用本地 PNG 图标（`frontend/src/assets/icons`），避免 SVG；`tabBar.list` 与 `custom-tab-bar` 中图标保持一致
+- `custom-tab-bar` 使用 `View/Image/Text` 渲染，并在 `frontend/src/custom-tab-bar/index.config.ts` 设置 `component: true`、`styleIsolation: 'shared'`
+- `frontend/src/app.config.ts` 不设置 `lazyCodeLoading`，由 Taro/开发者工具默认处理
+- `frontend/config/index.ts` 增加 `mini.addChunkPages`，保证 `custom-tab-bar/index` 先加载 `runtime/taro/vendors/common`
+- H5 侧在 `frontend/src/app.ts` 动态加载自定义 TabBar，避免小程序端重复注册
+
+#### 图标更新建议
+- 通过改文件名（如 `*-v2.png`）避免微信缓存旧图
+- 更新后清理 `frontend/dist` 并重新 `npm run dev:weapp`
 
 ---
 
